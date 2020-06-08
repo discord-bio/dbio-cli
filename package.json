@@ -1,6 +1,6 @@
 {
   "name": "discord.bio-cli",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "A CLI for discord.bio's rich presence.",
   "repository": {
     "type": "git",
@@ -14,6 +14,7 @@
     "bio": "./src/index.js"
   },
   "author": "ven",
+  "contributors":[ "Nick Chan#0001" ],
   "license": "ISC",
   "dependencies": {
     "clear": "^0.1.0",
