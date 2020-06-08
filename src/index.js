@@ -60,7 +60,6 @@ function createPresence() {
       },
     ])
     .then((answers) => {
-      console.log(answers)
       fs.writeFileSync(`${homedir}/.dbio-rpc-config.json`, JSON.stringify({ slug: answers.Slug.trim() }));
       loadPresence();
     });
