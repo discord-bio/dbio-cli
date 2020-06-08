@@ -26,9 +26,11 @@ inquirer
   .then((answers) => {
     switch (answers.Choice) {
       case 'Update discord.bio details':
-        createPresence();break;
+        createPresence();
+        break;
       case 'Start Rich Presence':
-        loadPresence();break;
+        loadPresence();
+        break;
       default:
         break;
     }
