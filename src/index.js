@@ -37,6 +37,9 @@ inquirer
     }
   });
 
+
+
+// Load Presence
 async function loadPresence() {
   if (!fs.readdirSync(homedir).includes('.dbio-rpc-config.json')) return createPresence()
   clear();
@@ -60,6 +63,8 @@ async function loadPresence() {
     instance: true,
   });
 }
+
+
 
 // Create/modify account
 async function createPresence() {
@@ -160,6 +165,8 @@ async function createPresence() {
             case "facebook":
               url = `https://facebook.com/profile.php?id=${connection.id}`;
               break;
+            case "spotify":
+              url = `https://spotify.com/user/${connection.id}`
             default:
               break;
           }
