@@ -57,9 +57,10 @@ async function loadPresence() {
   let bio = await got(`https://api.discord.bio/user/details/${slug}`).then(res => JSON.parse(res.body).payload.user)
   // push out the rp
   client.updatePresence({
-    state: `${bio.details.likes} like(s)`,
+    state: bio.details.likes + (bio.details.likes === 1 ? " like" : " likes"), // thanks LocalHotJew#324 for helping test
     details: bio.details.description,
     buttons: buttons,
+    largeImageKey: 'bio',
     instance: true,
   });
 }
