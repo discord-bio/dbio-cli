@@ -58,7 +58,7 @@ async function loadPresence() {
   // push out the rp
   client.updatePresence({
     state: `${bio.details.likes} like(s)`,
-    details: bio.details.description.length >= 30 ? bio.details.description.slice(0, 30).trim() + "..." : bio.details.description,
+    details: bio.details.description,
     buttons: buttons,
     instance: true,
   });
@@ -167,6 +167,7 @@ async function createPresence() {
               break;
             case "spotify":
               url = `https://spotify.com/user/${connection.id}`
+              break;
             default:
               break;
           }
