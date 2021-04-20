@@ -37,8 +37,6 @@ inquirer
     }
   });
 
-
-
 // Load Presence
 async function loadPresence() {
   if (!fs.readdirSync(homedir).includes('.dbio-rpc-config.json')) return createPresence()
@@ -49,7 +47,7 @@ async function loadPresence() {
   const { slug } = JSON.parse(data);
   const { button } = JSON.parse(data);''
 
-  let buttons = [{label: "Discord.bio", url: `https://dsc.bio/${slug}`}];
+  let buttons = [{label: "discord.bio", url: `https://dsc.bio/${slug}`}];
   if (button.url) buttons.push(button);
 
   ora('Displaying discord.bio Rich Presence!'.red).start();
@@ -57,7 +55,7 @@ async function loadPresence() {
   let bio = await got(`https://api.discord.bio/user/details/${slug}`).then(res => JSON.parse(res.body).payload.user)
   // push out the rp
   client.updatePresence({
-    state: bio.details.likes + (bio.details.likes === 1 ? " like" : " likes"), // thanks LocalHotJew#324 for helping test
+    state: bio.details.likes + (bio.details.likes === 1 ? " like" : " likes"),
     details: bio.details.description,
     buttons: buttons,
     largeImageKey: 'bio',
@@ -65,9 +63,6 @@ async function loadPresence() {
   });
 }
 
-
-
-// Create/modify account
 async function createPresence() {
   let connections = [];
   let bio;
@@ -87,14 +82,13 @@ async function createPresence() {
       // get connections and make them into one list
       try {
         bio = await got(`https://api.discord.bio/user/details/${slug}`).then(res => JSON.parse(res.body).payload.user);
-
-      // error messages bc people can't type
       } catch (error) {
-        console.log("Hey! you seem to put the wrong slug in... let's try that again");
+        console.log("Hey! You seem to have put the wrong slug in - let's try that again.");
         return createPresence();
       }
+    
       if (bio.message) {
-        console.log("Hey! you seem to put the wrong slug in... let's try that again");
+        console.log("Hey! You seem to have put the wrong slug in - let's try that again.");
         return createPresence();
       }
 
@@ -108,6 +102,7 @@ async function createPresence() {
   connections.forEach(connection => {
     choices.push(Object.keys(connection)[0]);
   });
+  
   choices.push("none")
   console.log(`What other ${'connection'.bold} do you want shown via a button?`);
   // CHOOOOSE
