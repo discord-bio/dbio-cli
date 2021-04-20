@@ -14,13 +14,16 @@
     "bio": "./src/index.js"
   },
   "author": "ven",
-  "contributors":[ "Nick Chan#0001" ],
+  "contributors": [
+    "Nick Chan#0001"
+  ],
   "license": "ISC",
   "dependencies": {
     "clear": "^0.1.0",
     "colors": "^1.4.0",
     "delay": "^4.3.0",
     "discord-rich-presence": "0.0.8",
+    "got": "^11.8.2",
     "ini": "^1.3.5",
     "inquirer": "^7.0.4",
     "ora": "^4.0.3"
