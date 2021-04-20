@@ -40,10 +40,15 @@ inquirer
 async function loadPresence() {
   if (!fs.readdirSync(homedir).includes('.dbio-rpc-config.json')) return createPresence()
   clear();
+
+  // get the data
   const data = fs.readFileSync(`${homedir}/.dbio-rpc-config.json`)
   const { slug } = JSON.parse(data);
-  const { button } = JSON.parse(data);
-  console.log(slug);
+  const { button } = JSON.parse(data);''
+
+  let buttons = [{label: "Discord.bio", url: `https://dsc.bio/${slug}`}];
+  if (button.url) buttons.push(button);
+
   ora('Displaying discord.bio Rich Presence!'.red).start();
   // get the bio
   let bio = await got(`https://api.discord.bio/user/details/${slug}`).then(res => JSON.parse(res.body).payload.user)
@@ -51,7 +56,7 @@ async function loadPresence() {
   client.updatePresence({
     state: `${bio.details.likes} like(s)`,
     details: bio.details.description.length >= 30 ? bio.details.description.slice(0, 30).trim() + "..." : bio.details.description,
-    buttons: [{label: "Discord.bio", url: `https://dsc.bio/${slug}`}, button],
+    buttons: buttons,
     instance: true,
   });
 }
@@ -97,6 +102,7 @@ async function createPresence() {
   connections.forEach(connection => {
     choices.push(Object.keys(connection)[0]);
   });
+  choices.push("none")
   console.log(`What other ${'connection'.bold} do you want shown via a button?`);
   // CHOOOOSE
   await inquirer
@@ -153,6 +159,7 @@ async function createPresence() {
               break;
             case "facebook":
               url = `https://facebook.com/profile.php?id=${connection.id}`;
+              break;
             default:
               break;
           }
