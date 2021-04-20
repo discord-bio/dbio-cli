@@ -1,7 +1,10 @@
 # ✒️ discord.bio CLI
 
-**Easily add your discord.bio profile to your Discord rich presence.**
+**Add your discord.bio profile to your Discord rich presence.**
 
 ## Get Started
+```
+npm i -g dbio-cli
+```
 
-Run `bio` in your console to start the CLI.
+In your terminal, run `bio` and follow the steps provided.
