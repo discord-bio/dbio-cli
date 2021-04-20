@@ -1,6 +1,6 @@
 {
   "name": "discord.bio-cli",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "A CLI for discord.bio's rich presence.",
   "repository": {
     "type": "git",
